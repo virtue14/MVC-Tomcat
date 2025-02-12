@@ -7,15 +7,18 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 
 public class WebApplicationServer {
+
+    public static final String WEBAPP_DIR_LOCATION = "webapps";
     private static final Logger log = LoggerFactory.getLogger(WebApplicationServer.class);
+    public static final int PORT = 8080;
+
     public static void main(String[] args) throws Exception {
+
         // /WEB-INF/classes
-        String webappDirLocation = "webapps";
-
         Tomcat tomcat = new Tomcat();
-        tomcat.setPort(8080);
+        tomcat.setPort(PORT);
 
-        tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
+        tomcat.addWebapp("/", new File(WEBAPP_DIR_LOCATION).getAbsolutePath());
         log.info("configuring app with basedir: {}", new File("./").getAbsolutePath());
 
         tomcat.start();
